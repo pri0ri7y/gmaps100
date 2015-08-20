@@ -1,8 +1,7 @@
 var app = app || {};
 
 app.viewer = {}; // viewer Object
-app.MVC = {}; //main MVC 
-
+ 
 
 /** Event Listener    **/
 $(document).ready(function () {
@@ -20,13 +19,22 @@ app.viewer._init = function initialize() {
         zoom: 13
     }, "map-canvas");
 
+
+    // common Utils creation
+    app.commonUtils = new commonUtils();
+
+
+
+
     // Places auto-complete creation
-    app.placesSearch = new placesSearch({ 
-        boundToMap:true
+    app.placesSearch = new placesSearch({
+        boundToMap: true
     }, "w1_freeSearch");
 
 
     //Search Nearby
+
+
 
 
 }
