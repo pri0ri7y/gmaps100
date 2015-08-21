@@ -3,20 +3,24 @@
 
 var commonUtils = Class.create({
 
-    init: function () {
+    init: function (map) {
+        this.map = map;
         this.initializeElements();
     },
-
     initializeElements: function () {
-        
+
         // Markers
         this.marker = new google.maps.Marker({
-            map: app.mapObject.map,
+            map: this.map,
             anchorPoint: new google.maps.Point(0, -29)
         });
 
         // InfoWindow
         this.infowindow = new google.maps.InfoWindow();
+        this.PlacesService = new google.maps.places.PlacesService(this.map);
+        this.DistanceMatrixService = new google.maps.DistanceMatrixService();
+        this.DirectionsService = new google.maps.DirectionsService();
+
 
     },
     setMarkerSymbol: function (place) {
@@ -40,6 +44,6 @@ var commonUtils = Class.create({
         }
 
         return address;
-   }
+    }
 
 });

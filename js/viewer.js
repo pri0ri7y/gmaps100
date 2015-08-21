@@ -21,18 +21,34 @@ app.viewer._init = function initialize() {
 
 
     // common Utils creation
-    app.commonUtils = new commonUtils();
-
-
+    app.commonUtils = new commonUtils(app.mapObject.map);
+       
+   
 
 
     // Places auto-complete creation
     app.placesSearch = new placesSearch({
         boundToMap: true
-    }, "w1_freeSearch");
+    }, app.mapObject.map, app.commonUtils, "w1_freeSearch");
 
 
     //Search Nearby
+    app.nearbySearch = new nearbySearch({
+        latitude:"w2_searchLatitude",
+        longitude:"w2_searchLongitude",
+        category: "w2_searchCategory",
+        radius: "w2_searchRadius",
+        errorMessage: "w2_searchErrorMessageDiv",
+        directionsPanel:"w2_directionsPanel",
+        maxRadius:3
+    }, app.mapObject.map, app.commonUtils );
+
+    $("#w2_searchButton").on("click", function (e) {  app.nearbySearch.onClickHandler(); });
+
+
+
+    //
+
 
 
 

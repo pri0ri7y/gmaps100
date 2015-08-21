@@ -8,7 +8,6 @@ var mapObject = Class.create({
         this.divId = divId;
         this.createMapObject();
     },
-
     createMapObject: function () {
         this.map =  new google.maps.Map(document.getElementById(this.divId), this.constructor);
     }
