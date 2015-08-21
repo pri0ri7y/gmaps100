@@ -22,8 +22,6 @@ app.viewer._init = function initialize() {
 
     // common Utils creation
     app.commonUtils = new commonUtils(app.mapObject.map);
-       
-   
 
 
     // Places auto-complete creation
@@ -34,21 +32,24 @@ app.viewer._init = function initialize() {
 
     //Search Nearby
     app.nearbySearch = new nearbySearch({
-        latitude:"w2_searchLatitude",
-        longitude:"w2_searchLongitude",
+        latitude: "w2_searchLatitude",
+        longitude: "w2_searchLongitude",
         category: "w2_searchCategory",
         radius: "w2_searchRadius",
         errorMessage: "w2_searchErrorMessageDiv",
-        directionsPanel:"w2_directionsPanel",
-        maxRadius:3
-    }, app.mapObject.map, app.commonUtils );
+        directionsPanel: "w2_directionsPanel",
+        maxRadius: 3
+    }, app.mapObject.map, app.commonUtils);
 
-    $("#w2_searchButton").on("click", function (e) {  app.nearbySearch.onClickHandler(); });
+    $("#w2_searchButton").on("click", function (e) { app.nearbySearch.onClickHandler(); });
 
 
+    //Context Menu
+    app.contextMenuController = new contextMenuController({
+      IsClearVisible:true,
 
-    //
 
+    }, app.mapObject.map, app.commonUtils);
 
 
 
