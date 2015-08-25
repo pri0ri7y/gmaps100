@@ -46,9 +46,7 @@ app.viewer._init = function initialize() {
 
     //Context Menu
     app.contextMenuController = new contextMenuController({
-      IsClearVisible:true,
-
-
+        nearBy: app.nearbySearch
     }, app.mapObject.map, app.commonUtils);
 
 
