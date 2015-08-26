@@ -86,7 +86,7 @@ body{
 }
 
 .w_header {font-family: cursive;}
-.w_directionResults {height: 100px;overflow-y: auto;}
+.w_directionResults {max-height: 100px;overflow-y: auto;}
 .w2_custom1{width: 80%; margin-left: 12px;}
 .w2_custom2{padding-left: 12px;font-family: cursive;}
 .w2_custom3{color: red; font-weight: 700; font-family: cursive;}
