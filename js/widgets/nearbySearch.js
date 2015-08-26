@@ -29,7 +29,7 @@
         this.longitude = $("#" + this.constructor.longitude).val();
         this.category = $("#" + this.constructor.category).val();
         this.radius = $("#" + this.constructor.radius).val();
-
+        $("#" + this.constructor.errorMessage).html("");
 
         // * creating the circle (overlay)
         if (this.circleOverlayObj != undefined) {
@@ -51,13 +51,11 @@
         var valBoolean = this.Validation([this.latitude, this.longitude, this.category, this.radius]);
         if (valBoolean) {
             this.PlacesRequestHandler([this.latitude, this.longitude, this.category, this.radius]);
+
+            // * setting map to center
+            this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
+            this.map.fitBounds(this.circleOverlayObj.getBounds());
         }
-
-        // * setting map to center
-        this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
-        this.map.fitBounds(this.circleOverlayObj.getBounds());
-
-
     },
     Validation: function (arr) {
 

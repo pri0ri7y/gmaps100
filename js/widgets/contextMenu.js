@@ -1,5 +1,4 @@
 ﻿var contextMenuController = Class.create({
-
     init: function (constructor, map, commons) {
         this.constructor = constructor;
         this.map = map;
@@ -35,13 +34,16 @@
         switch (eventName) {
 
             case 'evtClearGraphics':
-                
+
                 break;
 
             case 'evtUpdatePtInNearbySearch':
-                $("#" + this.constructor.nearBy.latitude).val();
-                $("#" + this.constructor.nearBy.longitude).val();
-               
+
+                if ($("#item2")[0].className != "panel-collapse collapse in") { $("#item2").collapse("toggle"); }
+
+                $("#" + this.constructor.nearBy.constructor.latitude).val(latLng.lat());
+                $("#" + this.constructor.nearBy.constructor.longitude).val(latLng.lng());
+
                 break;
 
             case 'evtZoomInClick':

@@ -9,7 +9,7 @@ var mapObject = Class.create({
         this.createMapObject();
     },
     createMapObject: function () {
-        this.map =  new google.maps.Map(document.getElementById(this.divId), this.constructor);
+        this.map = new google.maps.Map(document.getElementById(this.divId), this.constructor);
     }
 
 });
