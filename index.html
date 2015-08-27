@@ -125,8 +125,27 @@
                         <div id="item3" class="panel-collapse collapse">
                            <div class="panel-body">
                                <div id="w3_drawingController">
-                                  <a href="#" onclick="app.drawExport.drawingController(true);" >Activate Drawing Controls</a>
+                                  <p><a href="#" onclick="app.drawExport.drawingController(true);" >Activate Drawing Controls</a></p>                                  
+                               </div>
+                               <div>
+                                    <button type="button" id="w3_ClearGraphics" class="btn btn-primary">Clear Graphics</button>                                           
                                </div><hr />
+                                <div class="form-group">
+                                    <label for="w3_featureType" class="w3_custom2">
+                                        Feature</label>
+                                    <select class="form-control w3_custom1" id="w3_featureType">
+                                        <option value="marker">Point</option>
+                                        <option value="circle">Circle</option>
+                                        <option value="polygon">Polygon</option>
+                                        <option value="polyline">Polyline</option>
+                                        <option value="rectangle">Rectangle</option>
+                                    </select>
+                                    <label for="w3_exportType" class="w3_custom2">Type</label>                                       
+                                    <select class="form-control w3_custom1" id="w3_exportType">
+                                        <option value="geojson">GeoJSON</option>                                        
+                                    </select><br />
+                                    <div><center><button type="button" id="w3_exportExec" class="btn btn-primary">Export</button></center></div>                                                                       
+                                </div>
                            </div>
                         </div>
                     </div> 

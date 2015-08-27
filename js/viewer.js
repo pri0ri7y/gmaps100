@@ -41,14 +41,20 @@ app.viewer._init = function initialize() {
 
     //Drawing&Export
     app.drawExport = new drawExport({
-      drawingController:"w3_drawingController"
+      drawingController:"w3_drawingController",
+      feature:"w3_featureType",
+      exportType:"w3_exportType"
     }, app.mapObject.map, app.commonUtils);
+    $("#w3_ClearGraphics").on("click", function (e) { app.drawExport.clearGraphicsHandler(); });
+    $("#w3_exportExec").on("click", function (e) { app.drawExport.export(); });
+
+
 
     //Context Menu
     app.contextMenuController = new contextMenuController({
         nearBy: app.nearbySearch
     }, app.mapObject.map, app.commonUtils);
-
+    
 
 
 
