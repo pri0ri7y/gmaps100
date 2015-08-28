@@ -135,26 +135,21 @@
                                         Feature</label>
                                     <select class="form-control w3_custom1" id="w3_featureType">
                                         <option value="marker">Point</option>
-                                        <option value="circle">Circle</option>
-                                        <option value="polygon">Polygon</option>
                                         <option value="polyline">Polyline</option>
-                                        <option value="rectangle">Rectangle</option>
+                                        <option value="polygon">Polygon</option>                                         
                                     </select>
                                     <label for="w3_exportType" class="w3_custom2">Type</label>                                       
                                     <select class="form-control w3_custom1" id="w3_exportType">
                                         <option value="geojson">GeoJSON</option>                                        
                                     </select><br />
-                                    <div><center><button type="button" id="w3_exportExec" class="btn btn-primary">Export</button></center></div>                                                                       
+                                    <div><center><button type="button" id="w3_exportExec" class="btn btn-primary">Export</button>&nbsp;<button type="button" id="w3_clearExportExec" class="btn btn-primary">Clear Exports</button></center></div>
+                                    <div id="w3_exportsDiv">  </div>                               
+                                                                                                          
                                 </div>
                            </div>
                         </div>
                     </div> 
                     <!-- 3.0 Drawing&Export //  -->
-
-
-
-
-
 
                 </div>
                 </form>
@@ -178,6 +173,8 @@
         <script src="js/library/mordernizer.js" type="text/javascript"></script>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.20&key=AIzaSyAbqDrb5LmdotJWkZGHT5o9qQs7QkMxXCs&libraries=geometry,places,drawing"></script>
         <script src="js/library/ContextMenu.js" type="text/javascript"></script>
+        <script src="https://raw.githubusercontent.com/mapbox/tokml/master/tokml.js" type="text/javascript"></script>
+       
       <!-- Prototype Extension -->
          <script src="js/Prototype_Ext.js" type="text/javascript"></script>
  

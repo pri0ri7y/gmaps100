@@ -7,10 +7,8 @@
         this.drawingmode = null;
         this.drawGraphicsHolder = {
             marker: [],
-            circle: [],
             polygon: [],
-            polyline: [],
-            rectangle: []
+            polyline: []
         };
 
         this.initializeDrawingOptions();
@@ -23,21 +21,13 @@
                 position: google.maps.ControlPosition.TOP_CENTER,
                 drawingModes: [
                                 google.maps.drawing.OverlayType.MARKER,
-                                google.maps.drawing.OverlayType.CIRCLE,
                                 google.maps.drawing.OverlayType.POLYGON,
-                                google.maps.drawing.OverlayType.POLYLINE,
-                                google.maps.drawing.OverlayType.RECTANGLE
+                                google.maps.drawing.OverlayType.POLYLINE
                               ]
             },
             markerOptions: {
                 draggable: true,
                 icon: this.simplePointSymbol
-            },
-            circleOptions: {
-                fillOpacity: 0.1,
-                strokeWeight: 2,
-                clickable: false,
-                editable: true
             },
             polygonOptions: {
                 fillOpacity: 0.1,
@@ -49,14 +39,7 @@
                 geodesic: true,
                 editable: true,
                 strokeWeight: 2
-            },
-            rectangleOptions: {
-                fillOpacity: 0.1,
-                strokeWeight: 2,
-                clickable: false,
-                editable: true
             }
-
         });
 
         google.maps.event.addListener(this.drawingManager, 'overlaycomplete', $.proxy(this.overlayCompleteHandler, this));
@@ -94,45 +77,104 @@
         }
         this.drawGraphicsHolder = {
             marker: [],
-            circle: [],
-            ploygon: [],
-            polyline: [],
-            rectangle: []
+            polygon: [],
+            polyline: []
         };
 
 
     },
     export: function () {
-        this.fMap = new google.maps.Map();
         this.FeatureCollection = [];
         var featuretype = $("#" + this.constructor.feature).val();
         this.constructor.exportType = $("#" + this.constructor.exportType).val();
 
         switch (featuretype) {
-
             case 'marker':
                 for (var i = 0; i < this.drawGraphicsHolder['marker'].length; i++) {
-                    var tempfeat = new google.maps.Data.Feature({ geometry: new google.maps.Data.Point(this.drawGraphicsHolder['marker'][i].overlay.getPosition()) });
-                    this.fMap.data.add(tempfeat);
+                    var pt = this.drawGraphicsHolder['marker'][i];
+                    this.FeatureCollection.push(pt);
                 }
+                this.createGeoJson(this.FeatureCollection, 'marker');
                 break;
-            case google.maps.drawing.OverlayType.RECTANGLE:
-
+            case 'polyline':
+                for (var i = 0; i < this.drawGraphicsHolder['polyline'].length; i++) {
+                    var ln = this.drawGraphicsHolder['polyline'][i];
+                    this.FeatureCollection.push(ln);
+                }
+                this.createGeoJson(this.FeatureCollection, 'polyline');
                 break;
-            case google.maps.drawing.OverlayType.POLYGON:
-
+            case 'polygon':
+                for (var i = 0; i < this.drawGraphicsHolder['polygon'].length; i++) {
+                    var pol = this.drawGraphicsHolder['polygon'][i];
+                    this.FeatureCollection.push(pol);
+                }
+                this.createGeoJson(this.FeatureCollection, 'polygon');
                 break;
-            case google.maps.drawing.OverlayType.POLYLINE:
-
-                break;
-            case google.maps.drawing.OverlayType.CIRCLE:
-
-                break;
-
         }
 
-        this.fMap.getGeoJson(function (o) { console.log(o) });
+    },
+    createGeoJson: function (fc, type) {
+        this.GeoJson = { "type": "FeatureCollection",
+            "features": []
+        };
+
+        if (type == 'marker') {
+            for (var i = 0; i < fc.length; i++) {
+                var pt = { "type": "Feature",
+                    "geometry": { "type": "Point", "coordinates": [fc[i].overlay.position.lng(), fc[i].overlay.position.lat()] },
+                    "properties": { "id": i
+                    }
+                };
+                this.GeoJson['features'].push(pt);
+            }
+        }
+
+        if (type == 'polyline') {
+            for (var i = 0; i < fc.length; i++) {
+                var f = fc[i].overlay.getPath().getArray()
+                var coords = []
+                for (var x = 0; x < f.length; x++) {
+                    var coord = [f[x].lng(), f[x].lat()];
+                    coords.push(coord);
+                }
+
+                var ln = { "type": "Feature",
+                    "geometry": { "type": "LineString", "coordinates": coords },
+                    "properties": { "id": i
+                    }
+                };
+
+                this.GeoJson['features'].push(ln);
+            }
+        }
+
+        if (type == 'polygon') {
+            for (var i = 0; i < fc.length; i++) {
+                var f = fc[i].overlay.getPath().getArray()
+                var coords = []
+                for (var x = 0; x <= f.length; x++) {
+                    if (x == f.length) { var coord = [f[0].lng(), f[0].lat()]; }
+                    else { var coord = [f[x].lng(), f[x].lat()]; }
+                    coords.push(coord);
+                }
+                var ln = { "type": "Feature",
+                    "geometry": { "type": "Polygon", "coordinates": [coords] },
+                    "properties": { "id": i
+                    }
+                };
+                this.GeoJson['features'].push(ln);
+            }
+        }
+
+        var d = new Date();
+        var GeoJsonData = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.GeoJson));
+        $('<a href="data:' + GeoJsonData + '" download="' + type + '_' + d + '.json">' + type + '_' + d + '</a><br/>').appendTo('#' + this.constructor.exportsDiv);
+
+    },
+    clearExportsDiv: function () {
+        $('#' + this.constructor.exportsDiv).html("");
     }
+
 });
 
 

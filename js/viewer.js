@@ -43,10 +43,12 @@ app.viewer._init = function initialize() {
     app.drawExport = new drawExport({
       drawingController:"w3_drawingController",
       feature:"w3_featureType",
-      exportType:"w3_exportType"
+      exportType:"w3_exportType",
+      exportsDiv:"w3_exportsDiv"
     }, app.mapObject.map, app.commonUtils);
     $("#w3_ClearGraphics").on("click", function (e) { app.drawExport.clearGraphicsHandler(); });
     $("#w3_exportExec").on("click", function (e) { app.drawExport.export(); });
+    $("#w3_clearExportExec").on("click", function (e) { app.drawExport.clearExportsDiv(); });
 
 
 
