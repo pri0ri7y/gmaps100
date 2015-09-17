@@ -50,15 +50,10 @@ app.viewer._init = function initialize() {
     $("#w3_exportExec").on("click", function (e) { app.drawExport.export(); });
     $("#w3_clearExportExec").on("click", function (e) { app.drawExport.clearExportsDiv(); });
 
-
-
     //Context Menu
     app.contextMenuController = new contextMenuController({
         nearBy: app.nearbySearch
     }, app.mapObject.map, app.commonUtils);
     
-
-
-
 }
 

@@ -34,7 +34,7 @@
         switch (eventName) {
 
             case 'evtClearGraphics':
-
+                console.log("Yet to be updated !");
                 break;
 
             case 'evtUpdatePtInNearbySearch':
