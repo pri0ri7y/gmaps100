@@ -16,7 +16,7 @@ var geoJson = Class.create({
        st3.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/state.json');
        
     },
-    exportOnclick:fuction(e){
+    exportOnclick: function(e){
       console.log(e);      
     }
     
