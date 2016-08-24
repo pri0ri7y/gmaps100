@@ -22,19 +22,19 @@ var geoJson = Class.create({
       switch(sel){
           
         case 'st1':
-            this.st1.setMap(map);
+            this.st1.setMap(this.map);
             this.st2.setMap(null);
             this.st3.setMap(null);
             break;
         case 'st2':
             this.st1.setMap(null);
-            this.st2.setMap(map);
+            this.st2.setMap(this.map);
             this.st3.setMap(null);
             break;
         case 'st3':
             this.st1.setMap(null);
             this.st2.setMap(null);
-            this.st3.setMap(map);
+            this.st3.setMap(this.map);
             break;
         default:
             break;
