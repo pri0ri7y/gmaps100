@@ -11,9 +11,9 @@ var geoJson = Class.create({
        this.st2 =  new google.maps.Data();
        this.st3 =  new google.maps.Data();
        
-       st1.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/state.json');
-       st2.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/state.json');
-       st3.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/state.json');
+       this.st1.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/state.json');
+       this.st2.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/state.json');
+       this.st3.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/state.json');
        
     },
     exportOnclick: function(){
@@ -22,19 +22,19 @@ var geoJson = Class.create({
       switch(sel){
           
         case 'st1':
-            st1.setMap(map);
-            st2.setMap(null);
-            st3.setMap(null);
+            this.st1.setMap(map);
+            this.st2.setMap(null);
+            this.st3.setMap(null);
             break;
         case 'st2':
-            st1.setMap(null);
-            st2.setMap(map);
-            st3.setMap(null);
+            this.st1.setMap(null);
+            this.st2.setMap(map);
+            this.st3.setMap(null);
             break;
         case 'st3':
-            st1.setMap(null);
-            st2.setMap(null);
-            st3.setMap(map);
+            this.st1.setMap(null);
+            this.st2.setMap(null);
+            this.st3.setMap(map);
             break;
         default:
             break;
