@@ -16,7 +16,7 @@ app.viewer._init = function initialize() {
     app.mapObject = new mapObject({
         center: new google.maps.LatLng(20.5937, 78.9629),
         scrollWheel: false,
-        zoom: 8
+        zoom: 4
     }, "map-canvas");
 
     // common Utils creation
