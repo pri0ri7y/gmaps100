@@ -15,14 +15,14 @@ var geoJson = Class.create({
      
        this.st1.setStyle({
             fillColor: 'gray',
-            fillOpacity: .2
+            fillOpacity: .2,
             strokeColor: '#000',
             strokeOpacity: 1,
             strokeWeight: .5
           });
        this.st2.setStyle({
             fillColor: 'gray',
-            fillOpacity: .2
+            fillOpacity: .2,
             strokeColor: '#000',
             strokeOpacity: 1,
             strokeWeight: .5
