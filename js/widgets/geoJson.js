@@ -8,7 +8,22 @@ var geoJson = Class.create({
     initialize: function () {
        
        this.st1 =  new google.maps.Data();
+       this.st1.setStyle({
+            fillColor: 'gray',
+            fillOpacity: .2
+            strokeColor: '#000',
+            strokeOpacity: 1,
+            strokeWeight: .5
+          });
+       
        this.st2 =  new google.maps.Data();       
+       this.st2.setStyle({
+            fillColor: 'gray',
+            fillOpacity: .2
+            strokeColor: '#000',
+            strokeOpacity: 1,
+            strokeWeight: .5
+          });
        
        this.st1.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/state.json');
        this.st2.loadGeoJson('http://pri0ri7y.github.io/GMAPS100/assets/district.json');      
