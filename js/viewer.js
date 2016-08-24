@@ -51,6 +51,12 @@ app.viewer._init = function initialize() {
     $("#w3_clearExportExec").on("click", function (e) { app.drawExport.clearExportsDiv(); });
 
     //Context Menu
+    app.geoJson = new geoJson(app.mapObject.map);
+    $("#w4_load").on("click", function (e) { app.geoJson.exportOnclick(); });
+    
+    
+
+    //Context Menu
     app.contextMenuController = new contextMenuController({
         nearBy: app.nearbySearch
     }, app.mapObject.map, app.commonUtils);
